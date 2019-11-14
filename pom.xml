@@ -19,7 +19,6 @@
         <module>webapps</module>
         <module>monitor</module>
         <module>sysadmin</module>
-        <module>demos</module>
     </modules>
 
     <dependencyManagement>

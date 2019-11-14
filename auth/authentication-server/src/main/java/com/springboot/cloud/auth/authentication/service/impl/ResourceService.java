@@ -1,7 +1,7 @@
 package com.springboot.cloud.auth.authentication.service.impl;
 
 import com.springboot.cloud.auth.authentication.service.IResourceService;
-import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
+import com.springboot.cloud.sysadmin.entity.po.Resource;
 import com.springboot.cloud.auth.authentication.provider.ResourceProvider;
 import com.springboot.cloud.auth.authentication.service.NewMvcRequestMatcher;
 import lombok.extern.slf4j.Slf4j;

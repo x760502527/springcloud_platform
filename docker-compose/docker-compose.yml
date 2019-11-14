@@ -7,7 +7,7 @@ services:
     volumes:
       - ../data/redis:/data
     environment:
-      - REDIS_PASSWORD=123456
+      - REDIS_PASSWORD=root123
     networks:
       - sc-net
     ports:
@@ -15,7 +15,7 @@ services:
     env_file: .env
 
   rabbitmq:
-    image: rabbitmq:alpine
+    image: rabbitmq:management
     container_name: sc-rabbitmq
     restart: always
     volumes:
@@ -24,6 +24,7 @@ services:
       - sc-net
     ports:
       - 5672:5672
+      - 15672:15672
     env_file: .env
 
   mysql:
@@ -40,18 +41,34 @@ services:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: root123
 
-  mysql-init:
-    image: mysql:5.7
-    command: /init-db.sh
+  mongo:
+    image: mongo:latest
+    container_name: sc-mongo
+    restart: always
     networks:
       - sc-net
-    volumes:
-      - ../auth/db:/sql/auth
-      - ../gateway/gateway-admin/src/main/db:/sql/gateway
-      - ../sysadmin/db:/sql/sysadmin
-      - ./init-db.sh:/init-db.sh
+    ports:
+      - 27017:27017
+#    windows下挂载数据卷时有bug 同时windows会自动持久化
+#    volumes:
+#      - ../data/mongo:/data/db
     environment:
-      MYSQL_ROOT_PASSWORD: root123
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root123
+    env_file: .env
+
+#  mysql-init:
+#    image: mysql:5.7
+#    command: /init-db.sh
+#    networks:
+#      - sc-net
+#    volumes:
+#      - ../auth/db:/sql/auth
+#      - ../gateway/gateway-admin/src/main/db:/sql/gateway
+#      - ../sysadmin/db:/sql/sysadmin
+#      - ./init-db.sh:/init-db.sh
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root123
 
 networks:
   sc-net:

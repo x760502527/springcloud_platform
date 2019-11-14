@@ -1,6 +1,6 @@
 package com.springboot.cloud.auth.authentication.service;
 
-import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
+import com.springboot.cloud.sysadmin.entity.po.Resource;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
