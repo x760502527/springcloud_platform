@@ -60,6 +60,13 @@
                     </resources>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.springboot.cloud.sysadmin.SysadminApplication</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
